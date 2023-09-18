@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FetchDataShow</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="fetchAndShowData.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar pt-0 mb-10 navbar-expand-sm">
+    <div  style="background-color: #689F39; " class="container-fluid">
+      <a class="navbar-brand" href="index.html">FetchShowData</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="table1.html">Data From Local JSON</a></li>
+            <li class="nav-item"><a class="nav-link" href="table2.html">Data Table From Socket</a></li>
+        </ul>
+          </div>
+    </div>
+  </nav>
+<div class= "container mt-5 mb-5 table-responsive-md">
+       <table class="table table-sm table-bordered table-striped" id= "userTable">
+           <thead>
+               <th>#</th>
+               <th>Price</th>
+               <th>Price Change</th>
+               <th>Price Change Percent</th>
+           </thead>
+    <tbody>
+    <tr>
+      <th scope="row">ETH/USDT</th>
+      <td id="ethP"></td>
+      <td id="ethPc"></td>
+      <td id="ethPcp"></td>
+    </tr>
+    <tr>
+      <th scope="row">BTC/USDT</th>
+      <td id="btcP"></td>
+      <td id="btcPc"></td>
+      <td id="btcPcp"></td>
+    </tr>
+    <tr>
+      <th scope="row">XRP/USDT</th>
+      <td id="xrpP"></td>
+      <td id="xrpPc"></td>
+      <td id="xrpPcp"></td>
+    </tr>
+    <tr>
+      <th scope="row">LTC/USDT</th>
+      <td id="ltcP"></td>
+      <td id="ltcPc"></td>
+      <td id="ltcPcp"></td>
+    </tr>
+    <tr>
+      <th scope="row">BNB/USDT</th>
+      <td id="bnbP"></td>
+      <td id="bnbPc"></td>
+      <td id="bnbPcp"></td>
+    </tr>
+  </tbody>
+</table>
+           
+</div>
+
+<script>
+
+    let ws= new WebSocket('wss://stream.binance.com/stream?streams=ethusdt@ticker/btcusdt@ticker/xrpusdt@ticker/ltcusdt@ticker/bnbusdt@ticker');
+    let ethPrice = document.getElementById('ethP');
+    let ethPriceChange = document.getElementById('ethPc');
+    let ethPriceChangePercent = document.getElementById('ethPcp');
+    let btcPrice = document.getElementById('btcP');
+    let btcPriceChange = document.getElementById('btcPc');
+    let btcPriceChangePercent = document.getElementById('btcPcp');
+    let xrpPrice = document.getElementById('xrpP');
+    let xrpPriceChange = document.getElementById('xrpPc');
+    let xrpPriceChangePercent = document.getElementById('xrpPcp');
+    let ltcPrice = document.getElementById('ltcP');
+    let ltcPriceChange = document.getElementById('ltcPc');
+    let ltcPriceChangePercent = document.getElementById('ltcPcp');
+    let bnbPrice = document.getElementById('bnbP');
+    let bnbPriceChange = document.getElementById('bnbPc');
+    let bnbPriceChangePercent = document.getElementById('bnbPcp');
+    ws.onmessage = (e) => {
+        let eventData = JSON.parse(e.data);
+    
+        if(eventData.stream=="ethusdt@ticker") {
+            ethPrice.innerHTML = parseFloat(eventData.data.c).toFixed(5);
+            ethPriceChange.innerHTML = parseFloat(eventData.data.p).toFixed(5);
+            ethPriceChangePercent.innerHTML = parseFloat(eventData.data.P).toFixed(5); 
+            if(parseFloat(eventData.data.P) >= 1 || parseFloat(eventData.data.P) <= -1){
+                ethPriceChangePercent.style.color = "red";
+            }}
+        else if(eventData.stream=="btcusdt@ticker") {
+            btcPrice.innerHTML = parseFloat(eventData.data.c).toFixed(5);
+            btcPriceChange.innerHTML = parseFloat(eventData.data.p).toFixed(5);
+            btcPriceChangePercent.innerHTML = parseFloat(eventData.data.P).toFixed(5);
+            if(parseFloat(eventData.data.P) >= 1 || parseFloat(eventData.data.P) <= -1){
+                btcPriceChangePercent.style.color = "red";
+            }}
+        else if(eventData.stream=="xrpusdt@ticker") {
+            xrpPrice.innerHTML = parseFloat(eventData.data.c).toFixed(5);
+            xrpPriceChange.innerHTML = parseFloat(eventData.data.p).toFixed(5);
+            xrpPriceChangePercent.innerHTML = parseFloat(eventData.data.P).toFixed(5);
+            if(parseFloat(eventData.data.P) >= 1 || parseFloat(eventData.data.P) <= -1){
+                xrpPriceChangePercent.style.color = "red";
+            }}
+        else if(eventData.stream=="ltcusdt@ticker") {
+            ltcPrice.innerHTML = parseFloat(eventData.data.c).toFixed(5);
+            ltcPriceChange.innerHTML = parseFloat(eventData.data.p).toFixed(5);
+            ltcPriceChangePercent.innerHTML = parseFloat(eventData.data.P).toFixed(5);
+            if(parseFloat(eventData.data.P) >= 1 || parseFloat(eventData.data.P) <= -1){
+                ltcPriceChangePercent.style.color = "red";
+            }}
+        else if(eventData.stream=="bnbusdt@ticker") {
+            bnbPrice.innerHTML = parseFloat(eventData.data.c).toFixed(5);
+            bnbPriceChange.innerHTML = parseFloat(eventData.data.p).toFixed(5);
+            bnbPriceChangePercent.innerHTML = parseFloat(eventData.data.P).toFixed(5);
+             if(parseFloat(eventData.data.P) >= 1 || parseFloat(eventData.data.P) <= -1){
+                bnbPriceChangePercent.style.color = "red";
+            }}
+        
+    }
+    
+    </script>
+   
+</body>
+</html>
