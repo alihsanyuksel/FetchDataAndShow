@@ -1,44 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>FetchDataShow</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FetchDataShow</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="fetchAndShowData.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-
 <body>
   <nav class="navbar pt-0 mb-10 navbar-expand-sm">
-    <div  style="background-color: #689F39; " class="container-fluid">
+    <div style="background-color: #689F39;" class="container-fluid">
       <a class="navbar-brand" href="index.html">FetchShowData</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="table1.html">Data From Local JSON</a></li>
-            <li class="nav-item"><a class="nav-link" href="table2.html">Data Table From Socket</a></li>
+          <li class="nav-item"><a class="nav-link" href="table1.html">Data From Local JSON</a></li>
+          <li class="nav-item"><a class="nav-link" href="table2.html">Data Table From Socket</a></li>
         </ul>
-          </div>
+      </div>
     </div>
   </nav>
-
-  <div class="container mt-5" style="margin-top:10px;">
-    <div class="row ">
+  <div class="container mt-5 mb-5 table-responsive-md">
+    <div class="row">
       <div class="col-md">
-        <canvas id="BChart" style="width:100%;height:400px;max-height:100%"></canvas>
+        <table class="table table-sm table-bordered table-striped" id="userTable">
+          <thead>
+            <tr>
+              <th>ID Nation</th>
+              <th>Nation</th>
+              <th>ID Year</th>
+              <th>Year</th>
+              <th>Population</th>
+              <th>Slug Nation</th>
+            </tr>
+          </thead>
+          <tbody id="data-output">
+          </tbody>
+        </table>
       </div>
       <div class="col-md">
-        <canvas id="DChart" style="width:100%;height:400px;max-height:100%"></canvas>
+        <table class="table table-sm table-bordered table-striped" id="userTable2">
+            <caption>Those whose Price Change Percent value is equal to or above 1 or less than or equal to -1 are shown in <span style="color:red;">red</span>.</caption>
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Price</th>
+              <th>Price Change</th>
+              <th>Price Change Percent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">ETH/USDT</th>
+              <td id="ethP"></td>
+              <td id="ethPc"></td>
+              <td id="ethPcp"></td>
+            </tr>
+            <tr>
+              <th scope="row">BTC/USDT</th>
+              <td id="btcP"></td>
+              <td id="btcPc"></td>
+              <td id="btcPcp"></td>
+            </tr>
+            <tr>
+              <th scope="row">XRP/USDT</th>
+              <td id="xrpP"></td>
+              <td id="xrpPc"></td>
+              <td id="xrpPcp"></td>
+            </tr>
+            <tr>
+              <th scope="row">LTC/USDT</th>
+              <td id="ltcP"></td>
+              <td id="ltcPc"></td>
+              <td id="ltcPcp"></td>
+            </tr>
+            <tr>
+              <th scope="row">BNB/USDT</th>
+              <td id="bnbP"></td>
+              <td id="bnbPc"></td>
+              <td id="bnbPcp"></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-
-<script>
-
-</script>
-
+  <script src="fetchAndShowData.js"></script>
+  <script>
+    fetchNationDataAndShow();
+    fetchWebSocketDataAndShow();
+  </script>
 </body>
 </html>

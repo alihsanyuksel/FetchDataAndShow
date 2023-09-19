@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
+<body onload="fetchNationDataAndShow()">
   <nav class="navbar pt-0 mb-10 navbar-expand-sm">
     <div  style="background-color: #689F39; " class="container-fluid">
       <a class="navbar-brand" href="index.html">FetchShowData</a>
@@ -42,48 +42,6 @@
    </div>
     
     
-    <script>
-    /*async function getTableData() {
-    
-    const response = await fetch('src/nationData.json');
-    const records = await response.json();
-    console.log(records);*/
-    const myObj = {"data":
-[{"ID Nation":"01000US","Nation":"United States","ID Year":2020,"Year":"2020","Population":326569308,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2019,"Year":"2019","Population":324697795,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2018,"Year":"2018","Population":322903030,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2017,"Year":"2017","Population":321004407,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2016,"Year":"2016","Population":318558162,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2015,"Year":"2015","Population":316515021,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2014,"Year":"2014","Population":314107084,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2016,"Year":"2016","Population":318558162,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2012,"Year":"2015","Population":316515021,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2011,"Year":"2014","Population":314107084,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2012,"Year":"2015","Population":316515021,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2011,"Year":"2014","Population":314107084,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2020,"Year":"2020","Population":326569308,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2019,"Year":"2019","Population":324697795,"Slug Nation":"united-states"},
- {"ID Nation":"01000US","Nation":"United States","ID Year":2010,"Year":"2013","Population":311536594,"Slug Nation":"united-states"}]
-}
-    let tab = '';
-    var rowColors = ["table-primary","table-secondary","table-success","table-danger", "table-warning", "table-info", "table-light"]
-    
-    myObj.data.forEach(function(user, index){
-    tab += `<tr class= ${rowColors[index%7]}> 
-                <td>${user["ID Nation"]}</td> 
-                <td>${user.Nation}</td>
-                <td>${user["ID Year"]}</td> 
-                <td>${user.Year}</td> 
-                <td>${user.Population}</td>
-                <td>${user["Slug Nation"]}</td> 
-            </tr>`
-    console.log(index);
-        
-    })
-    
-    document.getElementById("data-output").innerHTML = tab;
-     
-
-    </script>
+    <script src="fetchAndShowData.js"></script>
 </body>
 </html>
